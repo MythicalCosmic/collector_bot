@@ -10,6 +10,8 @@ from core.config import config
 from core.logging import setup_logging
 from database.database import init_db, engine
 from bot.handlers import register_handlers
+from bot.middlewares.auth import AuthMiddleware
+from bot.middlewares.throttling import ThrottlingMiddleware
 
 load_dotenv()
 setup_logging()
@@ -19,6 +21,8 @@ logger = logging.getLogger(__name__)
 async def main():
     bot = Bot(token=config.bot_token)
     dp = Dispatcher()
+    dp.message.middleware(ThrottlingMiddleware())
+    dp.message.middleware(AuthMiddleware())
 
     try:
         await init_db()
