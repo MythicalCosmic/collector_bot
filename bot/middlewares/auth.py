@@ -1,10 +1,6 @@
-"""
-Authentication middleware
-"""
 from typing import Callable, Dict, Any, Awaitable
 from aiogram import BaseMiddleware
 from aiogram.types import Message
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.database import async_session
 from utils.helpers import get_or_create_user
@@ -25,6 +21,7 @@ class AuthMiddleware(BaseMiddleware):
                 data["user"] = user
                 data["session"] = session
 
-                return await handler(event, data)
+                result = await handler(event, data)
+                return result
 
         return await handler(event, data)

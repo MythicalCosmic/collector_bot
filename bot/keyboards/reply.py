@@ -13,3 +13,14 @@ def get_main_reply_keyboard() -> ReplyKeyboardMarkup:
         resize_keyboard=True
     )
     return keyboard
+
+def get_add_report_keyboard() -> ReplyKeyboardMarkup:
+    """Get add report reply keyboard"""
+    keyboard = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text="Add Report")],
+            [KeyboardButton(text="Cancel")]
+        ],
+        resize_keyboard=True
+    )
+    return keyboard

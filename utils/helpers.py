@@ -1,5 +1,6 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy import update
 
 from database.models.user import User
 
@@ -40,3 +41,16 @@ async def get_or_create_user(
         return user
 
     return await create_user(session, tg_user)
+
+
+async def update_user_state(
+    session: AsyncSession,
+    user_id: int,
+    state: str,
+) -> None:
+    await session.execute(
+        update(User)
+        .where(User.id == user_id)
+        .values(state=state)
+    )
+    await session.commit()

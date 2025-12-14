@@ -1,0 +1,10 @@
+{
+  "buttons": {
+    "add_report": "➕ Add Report",
+    "cancel": "❌ Cancel"
+  },
+  "messages": {
+    "start_report": "How many groups do you have?",
+    "cancelled": "Report creation cancelled."
+  }
+}

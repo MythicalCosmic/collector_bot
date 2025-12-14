@@ -14,7 +14,6 @@ async_session = async_sessionmaker(
 )
 
 async def init_db():
-    print(Base.metadata.tables.keys())  # MUST show 'users'
 
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
